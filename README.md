@@ -1,33 +1,33 @@
-# Script de Transformación de Similitud 2D para QGIS (`align.py`)
+# 2D Similarity Transformation Script for QGIS (`align.py`)
 
-Este script de Python está diseñado para ejecutarse dentro de **QGIS** (Python Console). Permite realizar una **Transformación de Similitud 2D** (que incluye rotación, traslación y escala uniforme) calculada por mínimos cuadrados, utilizando líneas de control para alinear elementos geográficos con precisión.
-
----
-
-## Características Principales
-
-- **Proyección en Metros (EPSG:22195):** Reproyecta temporalmente las coordenadas geográficas para realizar los cálculos matemáticos en metros, evitando distorsiones y errores numéricos.
-- **Mínimos Cuadrados:** Soporta 2 o más líneas de control para optimizar la transformación geométrica.
-- **Soporte de Geometrías:** Transforma tanto elementos puntuales (`Point`) como líneas (`LineString`) de la capa activa seleccionada en QGIS.
+This Python script is designed to run inside **QGIS** (Python Console). It performs a **2D Similarity Transformation** (including rotation, translation, and uniform scaling) calculated by least squares, using control lines to precisely align geographic features.
 
 ---
 
-## Requisitos Previos
+## Main Features
 
-1. **Capa de Líneas de Control:** Es indispensable que el proyecto cuente con una capa vectorial de líneas nombrada exactamente **`lineas_control`**.
-2. **Selección de Líneas:** Debes seleccionar **al menos 2 líneas** en la capa `lineas_control`. 
-   - El punto inicial de cada línea (`line[0]`) actúa como el origen (posición actual / desalineada).
-   - El punto final de cada línea (`line[-1]`) actúa como el destino (posición correcta / objetivo).
-3. **Capa Activa a Transformar:** Debes tener una capa activa en el panel de capas de QGIS y **seleccionar los elementos** (puntos o líneas) que deseas transformar.
+- **Projection in Meters (EPSG:22195):** Temporarily reprojects geographic coordinates to perform mathematical calculations in meters, avoiding distortions and numerical errors.
+- **Least Squares:** Supports 2 or more control lines to optimize the geometric transformation.
+- **Geometry Support:** Transforms both point (`Point`) and line (`LineString`) features from the active layer selected in QGIS.
 
 ---
 
-## ¿Cómo Correr el Script en QGIS?
+## Prerequisites
 
-1. Abre tu proyecto en **QGIS**.
-2. Asegúrate de tener creada la capa **`lineas_control`** y selecciona al menos **2 líneas de control** utilizando la herramienta de selección.
-3. Selecciona en el panel de capas de QGIS la capa cuyos elementos deseas alinear/transformar, y selecciona los elementos específicos que quieres mover.
-4. Abre la **Consola de Python** en QGIS (`Plugins` > `Python Console` o `Ctrl + Alt + P`).
-5. Copia y pega el contenido de `align.py` (o cárgalo como script) y ejecútalo.
+1. **Control Lines Layer:** The project must contain a vector layer of lines named exactly **`lineas_control`**.
+2. **Line Selection:** You must select **at least 2 lines** in the `lineas_control` layer. 
+   - The starting point of each line (`line[0]`) acts as the origin (current / misaligned position).
+   - The ending point of each line (`line[-1]`) acts as the destination (correct / target position).
+3. **Active Layer to Transform:** You must have an active layer in the QGIS layer panel and **select the features** (points or lines) you wish to transform.
 
-El script validará la existencia de la capa, calculará la matriz de similitud basada en las líneas seleccionadas y aplicará la transformación a los elementos seleccionados de la capa activa dentro de una sesión de edición.
+---
+
+## How to Run the Script in QGIS?
+
+1. Open your project in **QGIS**.
+2. Make sure you have created the **`lineas_control`** layer and selected at least **2 control lines** using the selection tool.
+3. Select the layer whose features you want to align/transform in the QGIS layer panel, and select the specific features you want to move.
+4. Open the **Python Console** in QGIS (`Plugins` > `Python Console` or `Ctrl + Alt + P`).
+5. Copy and paste the content of `align.py` (or load it as a script) and run it.
+
+The script will validate the layer's existence, calculate the similarity matrix based on the selected lines, and apply the transformation to the selected features of the active layer within an edit session.
